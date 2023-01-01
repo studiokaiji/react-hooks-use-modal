@@ -41,12 +41,12 @@ export interface ModalWrapperProps<T extends Record<string, unknown>> {
   additionalProps?: T;
 }
 
-export type UseModalResult<T extends Record<string, unknown>> = [
-  ModalWrapper: React.FC<ModalWrapperProps<T>>,
-  open: () => void,
-  close: () => void,
-  isOpen: boolean
-];
+export type UseModalResult<T extends Record<string, unknown>> = {
+  Modal: React.FC<ModalWrapperProps<T>>;
+  open: () => void;
+  close: () => void;
+  isOpen: boolean;
+};
 
 export type UseModal<T extends Record<string, unknown>> = (
   elementId?: string,
@@ -71,13 +71,8 @@ export const useModal = <T extends Record<string, unknown>>(
   );
   const [isOpen, setOpen] = useState<boolean>(initialValue);
 
-  const open = useCallback(() => {
-    setOpen(true);
-  }, [setOpen]);
-
-  const close = useCallback(() => {
-    setOpen(false);
-  }, [setOpen]);
+  const open = () => setOpen(true);
+  const close = () => setOpen(false);
 
   const Wrapper = components.Wrapper ?? DefaultWrapper;
   const Overlay = components.Overlay ?? DefaultOverlay;
@@ -117,7 +112,12 @@ export const useModal = <T extends Record<string, unknown>>(
     ]
   );
 
-  return [_ModalWrapper, open, close, isOpen];
+  return {
+    Modal: _ModalWrapper,
+    open,
+    close,
+    isOpen,
+  };
 };
 
 export { ModalProvider } from './components/ModalProvider';

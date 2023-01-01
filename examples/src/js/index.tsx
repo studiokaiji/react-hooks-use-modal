@@ -9,7 +9,7 @@ const modalStyle: React.CSSProperties = {
 };
 
 export const Modal = () => {
-  const [Modal, open, close, isOpen] = useModal('root');
+  const { Modal, open, close, isOpen } = useModal('root');
 
   return (
     <div>

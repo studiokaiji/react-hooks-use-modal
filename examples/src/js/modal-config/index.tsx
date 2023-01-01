@@ -8,7 +8,7 @@ const modalStyle: React.CSSProperties = {
 };
 
 const Modal = () => {
-  const [Modal, open, close, isOpen] = useModal('root');
+  const { Modal, open, close, isOpen } = useModal('root');
 
   return (
     <div>
@@ -25,7 +25,7 @@ const Modal = () => {
   );
 };
 const ModalWithOverrideOptions = () => {
-  const [Modal, open, close, isOpen] = useModal('root', {
+  const { Modal, open, close, isOpen } = useModal('root', {
     focusTrapOptions: {
       clickOutsideDeactivates: false,
     },

@@ -2,7 +2,7 @@ import React from 'react';
 import { ModalProps, ModalProvider, useModal } from '../../../../src';
 
 const Modal = () => {
-  const [Modal, open, close, isOpen] = useModal('root');
+  const { Modal, open, close, isOpen } = useModal('root');
 
   return (
     <div>
@@ -15,7 +15,7 @@ const Modal = () => {
   );
 };
 const ModalWithOverrideOptions = () => {
-  const [Modal, open, close, isOpen] = useModal('root', {
+  const { Modal, open, close, isOpen } = useModal('root', {
     components: {
       Modal: ({ title, description, children }) => {
         return (
@@ -96,7 +96,7 @@ const OverrideModal: React.FC<OverrideModalProps> = ({
 };
 
 const ModalWithAdditionalProps = () => {
-  const [Modal, open, close, isOpen] = useModal('root', {
+  const { Modal, open, close, isOpen } = useModal('root', {
     components: {
       Modal: OverrideModal, // The type of `additionalProps` that can be specified for `Modal` is automatically determined according to the type of `components.Modal` props.
     },
